@@ -10,3 +10,4 @@ install:
 
 script:
   - pytest --cov=coin_spider
+  - codecov --token=bed24858-4b64-4e1c-8106-070d737d512f
