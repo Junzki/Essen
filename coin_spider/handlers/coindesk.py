@@ -2,10 +2,10 @@
 import requests
 import iso8601
 
-from .exceptions import RequestException
+from coin_spider.exceptions import RequestException
 
 
-def coindisk_handler(src, **kwargs):
+def handler(src, **kwargs):
     """
     Fetch coin price from coindisk.
 
