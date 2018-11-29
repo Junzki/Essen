@@ -2,7 +2,7 @@
 import requests
 import iso8601
 
-from coin_spider.exceptions import RequestException
+from essen.exceptions import RequestException
 
 
 def handler(src, **kwargs):
