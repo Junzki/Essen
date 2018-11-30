@@ -1,10 +1,4 @@
-celery[amqp]
-requests==2.18.4
-iso8601==0.1.12
-
-# Dev
-pytest
-pytest-cov
 coverage
 ipython
-pylint
+pytest
+pytest-cov
