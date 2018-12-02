@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 
+
 class RequestException(Exception):
     """
     Common request excpetion.
@@ -15,6 +16,10 @@ class RequestException(Exception):
         self.status_code = str(status_code)
         self.message = str(message)
 
-
     def __str__(self):
         return '[{}] {}'.format(self.status_code, self.message)
+
+
+class ImproperlyConfigured(Exception):
+    """Essen is somehow improperly configured"""
+    pass
