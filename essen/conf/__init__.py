@@ -1,4 +1,8 @@
 # -*- coding:utf-8 -*-
+""" Settings Module
+
+Copied from Django Settings for LazyObject and LazySettings.
+"""
 import os
 import importlib
 from essen.exceptions import ImproperlyConfigured
@@ -83,9 +87,9 @@ class UserSettingsHolder:
 
 class LazySettings(LazyObject):
     """
-    A lazy proxy for either global Django settings or a custom settings object.
+    A lazy proxy for either global Essen settings or a custom settings object.
     The user can manually configure settings prior to using them. Otherwise,
-    Django uses the settings module pointed to by DJANGO_SETTINGS_MODULE.
+    Essen uses the settings module pointed to by ESSEN_SETTINGS_MODULE.
     """
     def _setup(self, name=None):
         """
