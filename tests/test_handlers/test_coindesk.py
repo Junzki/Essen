@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import datetime
-from coin_spider.handlers import coindesk
+from essen.handlers import coindesk
+
 
 def test_coindesk_fetch():
     """
