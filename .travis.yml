@@ -13,4 +13,4 @@ install:
 
 script:
   - bash manage.sh test
-  - codecov --token=bed24858-4b64-4e1c-8106-070d737d512f
+  - codecov --token=d9963cf7-f93a-4d20-a713-f61924ef1ac8
