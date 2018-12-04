@@ -2,3 +2,4 @@ coverage
 ipython
 pytest
 pytest-cov
+pytest-env

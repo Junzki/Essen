@@ -18,6 +18,8 @@ fi
 if [[ -z "${ESSEN_SETTINGS_MODULE}" ]]; then
     echo "\$ESSEN_SETTINGS_MODULE not set, using default value."
     export ESSEN_SETTINGS_MODULE="essen.settings"
+else
+    echo "Using current ESSEN_SETTINGS_MODULE = $ESSEN_SETTINGS_MODULE"
 fi
 
 case $1 in
