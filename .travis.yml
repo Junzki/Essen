@@ -12,5 +12,5 @@ install:
   - pip install codecov
 
 script:
-  - pytest --cov=coin_spider
+  - bash manage.sh test
   - codecov --token=bed24858-4b64-4e1c-8106-070d737d512f
