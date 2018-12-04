@@ -4,6 +4,7 @@
 Copied from Django Settings for LazyObject and LazySettings.
 """
 import os
+import sys
 import importlib
 from essen.exceptions import ImproperlyConfigured
 from essen.utils.functional import LazyObject, empty
@@ -15,6 +16,9 @@ ENVIRONMENT_VARIABLE = "ESSEN_SETTINGS_MODULE"
 class Settings(object):
 
     PREFIX = 'ESSEN_'
+    TUPLE_SETTINGS = (
+        'INCLUDE_PACKAGES',
+    )
 
     def __init__(self, settings_module):
         mod = importlib.import_module(settings_module)
@@ -30,13 +34,33 @@ class Settings(object):
             if not setting.isupper():
                 continue
 
-            setattr(self, setting, getattr(mod, setting))
+            value = getattr(mod, setting)
+
+            if setting in self.TUPLE_SETTINGS and not isinstance(value, (list, tuple)):
+                raise ValueError('List or tuple required for field %s.' % setting)
+
+            setattr(self, setting, value)
+
+        sys.path.append(self.BASE_DIR)  # Append project root to Python PATH explicitly.
+
+        for item in getattr(self, 'INCLUDE_PACKAGES', list()):
+            importlib.import_module(item)  # Import external packages.
 
     def __getattr__(self, item):
         """ Get value from env with specially named keys.
         """
         key = self.PREFIX + item
         return os.environ.get(key)
+
+    def as_dict(self):
+        _conf = dict()
+        for setting in dir(self):
+            if not setting.isupper():
+                continue
+
+            _conf[setting] = getattr(self, setting)
+
+        return _conf
 
 
 class UserSettingsHolder:

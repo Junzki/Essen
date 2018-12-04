@@ -17,10 +17,19 @@ fi
 
 if [[ -z "${ESSEN_SETTINGS_MODULE}" ]]; then
     echo "\$ESSEN_SETTINGS_MODULE not set, using default value."
-    ESSEN_SETTINGS_MODULE="essen.settings"
+    export ESSEN_SETTINGS_MODULE="essen.settings"
 fi
 
 case $1 in
+"shell")
+    ipython
+    ;;
+
+"celery")
+    echo "Run Celery worker."
+    celery -A essen.app worker --loglevel=info
+    ;;
+
 "clean")
     echo "Clean project."
     clean_project
