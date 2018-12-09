@@ -4,7 +4,6 @@
 Copied from Django Settings for LazyObject and LazySettings.
 """
 import os
-import sys
 import importlib
 from essen.exceptions import ImproperlyConfigured
 from essen.utils.functional import LazyObject, empty
@@ -40,11 +39,6 @@ class Settings(object):
                 raise ValueError('List or tuple required for field %s.' % setting)
 
             setattr(self, setting, value)
-
-        sys.path.append(self.BASE_DIR)  # Append project root to Python PATH explicitly.
-
-        for item in getattr(self, 'INCLUDE_PACKAGES', list()):
-            importlib.import_module(item)  # Import external packages.
 
     def __getattr__(self, item):
         """ Get value from env with specially named keys.
